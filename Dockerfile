@@ -115,4 +115,4 @@ ENV HERMES_HOME=/opt/data
 ENV PATH="/opt/data/.local/bin:${PATH}"
 VOLUME [ "/opt/data" ]
 ENTRYPOINT [ "/usr/bin/tini", "-g", "--", "/opt/hermes/docker/entrypoint.sh" ]
-CMD ["gateway", "run"]
+CMD ["sh", "-c", "rm -f /opt/data/gateway.lock /opt/data/gateway.pid /opt/data/*.db-shm /opt/data/*.db-wal && exec /opt/hermes/docker/entrypoint.sh gateway run"]
